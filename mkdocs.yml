@@ -1,32 +1,54 @@
-site_name: adc_download
-site_description: download images
-site_url: https://adc-download.github.io/
-repo_url: https://github.com/JulioContrerasH/adc-download
-repo_name: JulioContrerasH/adc-download
+site_name: adc-download
+repo_url: https://github.com/Cesar, Julio, Jair/adc-download
+site_url: https://Cesar, Julio, Jair.github.io/adc-download
+site_description: This is a template repository for Python projects that use Poetry for their dependency management.
+site_author: Cesar Aybar, Julio Contreras, Jair Flores
+edit_uri: edit/main/docs/
+repo_name: Cesar, Julio, Jair/adc-download
+copyright: Maintained by <a href="https://Cesar, Julio, Jair.com">Florian</a>.
 
 nav:
-  - Overview: "index.md"
-  - Reference:
-    - cli.py: "reference/cli.md"
-  - Contributing: "contributing.md"
-  - Code of Conduct: "code_of_conduct.md"
-  - Changelog: "changelog.md"
-  - Credits: "credits.md"
-
-theme:
-  name: "material"
-
-extra_css:
-  - css/mkdocstrings.css
-
-markdown_extensions:
-  - admonition
-  - codehilite:
-      guess_lang: false
-  - pymdownx.superfences
-
+  - Home: index.md
+  - Modules: modules.md
 plugins:
   - search
   - mkdocstrings:
-      watch:
-        - src/adc_download
+      handlers:
+        python:
+            setup_commands:
+                - import sys
+                - sys.path.append('../')
+theme:
+  name: material
+  feature:
+    tabs: true
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Cesar, Julio, Jair/adc-download
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/adc-download
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
