@@ -109,12 +109,15 @@ for key in collection_dict.keys():
     # Get the data in a numpy array
     array = dc.to_numpy()
 
-    for sensor in meta_dict['instruments']:
-        sensor = '_'.join(sensor)
+    if isinstance(meta_dict["instruments"], list):        
+        for sensor in meta_dict['instruments']:
+            sensor = '_'.join(sensor)
+    else:
+        sensor = meta_dict['instruments']
 
     # Create a subfolder for each sensor
     subfolder = (pathlib.Path(path)/id/sensor)
-    subfolder.mkdir(parents=True, exist_ok=True)
+    subfolder.mkdir(parents=True, exist_ok=True)        
 
     # Save the data in a numpy array
     np.save(subfolder/"test.npy", array)
