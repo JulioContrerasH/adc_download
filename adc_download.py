@@ -1,6 +1,8 @@
 import cubo
 import datetime
 import pathlib
+import numpy as np
+import json
 '''
 Descripción de adc_download:
     Este paquete permite descargar imágenes satelitales utilizando la API de descarga de Planetary Computer,
@@ -82,7 +84,7 @@ id = "test"
 # Create the folder structure
 (pathlib.Path(path)/id).mkdir(parents=True, exist_ok=True)
 
-data_dict = {'id': id, 'metadata': [], 'arrays': []}
+# Download the data (as .npy) and metadata (as .json) for each collection
 for key in collection_dict.keys():
     dc = cubo.create(
         lat=4.31,  # Central latitude of the cube
@@ -103,14 +105,25 @@ for key in collection_dict.keys():
     
     # Change the time values to a dictionary of datetime
     meta_dict['time'] = [get_time_value(time_val) for time_val in meta_dict['time']]
-    
+
     # Get the data in a numpy array
     array = dc.to_numpy()
-    
-    # Append metadata and array to data_dict
-    data_dict['metadata'].append(meta_dict)
-    data_dict['arrays'].append(array)
+
+    for sensor in meta_dict['instruments']:
+        sensor = '_'.join(sensor)
+
+    # Create a subfolder for each sensor
+    subfolder = (pathlib.Path(path)/id/sensor)
+    subfolder.mkdir(parents=True, exist_ok=True)
+
+    # Save the data in a numpy array
+    np.save(subfolder/"test.npy", array)
+    # Save the metadata in a json file
+    with open(subfolder/"test.json", 'w') as f:
+        json.dump(meta_dict, f) ## Se guarda todo el diccionario, y no los que representan al sensor
+
 ### ------------------------
+
 
 
 
