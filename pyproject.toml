@@ -1,0 +1,71 @@
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry]
+name = "adc-download"
+version = "0.1.0"
+description = "download images"
+authors = ["Cesar, Julio, Jair <julio.contreras1@unmsm.edu.pe>"]
+license = "Academic Free License v3.0"
+readme = "README.md"
+repository = "https://github.com/JulioContrerasH/adc-download"
+homepage = "https://github.com/JulioContrerasH/adc-download"
+keywords = []
+packages = [ { include = "adc_download", from = "src" } ]
+include = [
+    "README.md",
+    "pyproject.toml"
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+bandit = "*"
+black = { version = "*", allow-prereleases = true }
+coverage = "*"
+flake8 = "*"
+ipython = "*"
+isort = { version = "*", extras = ["pyproject"] }
+jinja2-cli = "*"
+mkdocs = "*"
+mkdocstrings = "*"
+mkdocs-material = "*"
+pylint = { git = "https://github.com/PyCQA/pylint" }
+pytest = "*"
+pytest-cov = "*"
+pytest-sugar = "*"
+pytest-xdist = "*"
+safety = "*"
+
+[tool.poetry.scripts]
+adc-download = "adc_download.cli:main"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+line_length = 120
+not_skip = "__init__.py"
+multi_line_output = 3
+force_single_line = false
+balanced_wrapping = true
+default_section = "THIRDPARTY"
+known_first_party = "adc_download"
+include_trailing_comma = true
+
+[tool.pylint.options]
+disable = """
+  bad-continuation,
+  too-many-lines,
+  too-many-public-methods,
+  too-many-locals,
+  too-many-statements,
+  too-many-arguments,
+  too-many-instance-attributes,
+  too-many-branches,
+  too-few-public-methods,
+  duplicate-code
+"""
+max-line-length = "120"
