@@ -1,54 +1,133 @@
-# Contributing
-Contributions are welcome, and they are greatly appreciated!
+# Contributing to `adc-download`
 
+Contributions are welcome, and they are greatly appreciated!
 Every little bit helps, and credit will always be given.
 
-For bug reports, feature requests, and feedback,
-simply create a new [issue][1].
-Try to be as descriptive as possible.
+You can contribute in many ways:
 
-### Bug fixes, new features and documentation
-This project is developed using [`poetry`](https://github.com/sdispater/poetry).
-Follow the recommended installation method:
+# Types of Contributions
+
+## Report Bugs
+
+Report bugs at https://github.com/Cesar, Julio, Jair/adc-download/issues
+
+If you are reporting a bug, please include:
+
+- Your operating system name and version.
+- Any details about your local setup that might be helpful in troubleshooting.
+- Detailed steps to reproduce the bug.
+
+## Fix Bugs
+
+Look through the GitHub issues for bugs.
+Anything tagged with "bug" and "help wanted" is open to whoever wants to implement a fix for it.
+
+## Implement Features
+
+Look through the GitHub issues for features.
+Anything tagged with "enhancement" and "help wanted" is open to whoever wants to implement it.
+
+## Write Documentation
+
+Cookiecutter PyPackage could always use more documentation, whether as part of the official docs, in docstrings, or even on the web in blog posts, articles, and such.
+
+## Submit Feedback
+
+The best way to send feedback is to file an issue at https://github.com/Cesar, Julio, Jair/adc-download/issues.
+
+If you are proposing a new feature:
+
+- Explain in detail how it would work.
+- Keep the scope as narrow as possible, to make it easier to implement.
+- Remember that this is a volunteer-driven project, and that contributions
+  are welcome :)
+
+# Get Started!
+
+Ready to contribute? Here's how to set up `adc-download` for local development.
+Please note this documentation assumes you already have `poetry` and `Git` installed and ready to go.
+
+1. Fork the `adc-download` repo on GitHub.
+
+2. Clone your fork locally:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+cd <directory_in_which_repo_should_be_created>
+git clone git@github.com:YOUR_NAME/adc-download.git
 ```
 
-Then follow these instructions:
+3. Now we need to install the environment. Navigate into the directory
 
-1. Fork the repository [on github.com][2];
-1. Clone it on your machine;
-1. Go into the directory, and run `poetry install` to setup the development environment;
-1. Create a new branch with `git checkout -b bug-fix-or-feature-name`;
-1. Code!
-1. **Write tests. Run them all.** The commands to run the tests are:
-   ```bash
-   poetry run pytest  # to run all tests sequentially
-   poetry run pytest -v  # to print one test per line
-   poetry run pytest -n 4  # to run tests in parallel (4 workers)
-   poetry run pytest tests/test_api.py  # to run tests in a specific file
-   ```
+```bash
+cd adc-download
+```
 
-   `pytest` provides the `-k` option to select tests based on their names:
+If you are using `pyenv`, select a version to use locally. (See installed versions with `pyenv versions`)
 
-   ```bash
-   poetry run pytest -k "api and remove"
-   poetry run pytest -k "utils or stats"
-   ```
+```bash
+pyenv local <x.y.z>
+```
 
-   See the [documentation for the `-k` option][3] for more examples.
+Then, install and activate the environment with:
 
-   A [Makefile](Makefile) is available for convenience: `make test`.
-1. When the tests pass, commit
-  (make sure to have atomic commits and contextual commit messages!
-  [Check out this awesome blog post by Chris Beams for more information.][4])
-1. Push;
-1. ...and finally, create a new [pull/merge request][5]!
-   Make sure to follow the guidelines.
+```bash
+poetry install
+poetry shell
+```
 
-[1]: https://github.com/JulioContrerasH/adc-download/issues/new
-[2]: https://github.com/JulioContrerasH/adc-download
-[3]: https://docs.pytest.org/en/latest/example/markers.html#using-k-expr-to-select-tests-based-on-their-name
-[5]: http://chris.beams.io/posts/git-commit/
-[4]: https://github.com/JulioContrerasH/adc-download/compare
+4. Install pre-commit to run linters/formatters at commit time:
+
+```bash
+poetry run pre-commit install
+```
+
+5. Create a branch for local development:
+
+```bash
+git checkout -b name-of-your-bugfix-or-feature
+```
+
+Now you can make your changes locally.
+
+6. Don't forget to add test cases for your added functionality to the `tests` directory.
+
+7. When you're done making changes, check that your changes pass the formatting tests.
+
+```bash
+make check
+```
+
+Now, validate that all unit tests are passing:
+
+```bash
+make test
+```
+
+9. Before raising a pull request you should also run tox.
+   This will run the tests across different versions of Python:
+
+```bash
+tox
+```
+
+This requires you to have multiple versions of python installed.
+This step is also triggered in the CI/CD pipeline, so you could also choose to skip this step locally.
+
+10. Commit your changes and push your branch to GitHub:
+
+```bash
+git add .
+git commit -m "Your detailed description of your changes."
+git push origin name-of-your-bugfix-or-feature
+```
+
+11. Submit a pull request through the GitHub website.
+
+# Pull Request Guidelines
+
+Before you submit a pull request, check that it meets these guidelines:
+
+1. The pull request should include tests.
+
+2. If the pull request adds functionality, the docs should be updated.
+   Put your new functionality into a function with a docstring, and add the feature to the list in `README.md`.
